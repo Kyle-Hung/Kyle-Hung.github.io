@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Random Picker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+    }
+    textarea {
+      width: 300px;
+      height: 150px;
+    }
+    button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+    }
+    #result {
+      margin-top: 20px;
+      font-size: 24px;
+      color: red;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Random Picker</h1>
+  <p>Enter the items you want to pick from (one per line):</p>
+  <textarea id="inputItems" placeholder="Example:\nEric\nKai"></textarea><br>
+  <button onclick="pickRandom()">Pick one!</button>
+
+  <div id="result"></div>
+
+  <script>
+    function pickRandom() {
+      const input = document.getElementById('inputItems').value;
+      const items = input.split('\n').map(item => item.trim()).filter(item => item !== '');
+      if (items.length === 0) {
+        document.getElementById('result').textContent = 'Please enter some items!';
+        return;
+      }
+      const randomItem = items[Math.floor(Math.random() * items.length)];
+      document.getElementById('result').textContent = `You got: ${randomItem}`;
+    }
+  </script>
+
+</body>
+</html>
